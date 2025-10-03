@@ -1,0 +1,274 @@
+--[[
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⣀⣀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⢀⣤⠒⠒⠒⠚⣭⡟⠻⠍⠉⠉⠄⠀⠀⠀⠀⠌⢳⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⢸⠘⡌⡀⠀⠴⠁⢻⠀⠀⠀⠀⢰⠀⠀⠀⠀⠀⢸⡀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⡟⠠⠀⡇⢰⢛⡶⡝⠀⠀⢠⠀⠸⠀⠀⠀⢀⠀⠈⡇⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⡇⠀⣀⡆⠏⣻⣃⠁⠀⠀⠀⠀⠀⠆⠀⠐⠀⠐⠀⡇⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⢰⡗⠁⣠⣤⡤⡀⠀⠑⣄⠀⠀⠀⠀⣀⣨⣤⣤⣀⠀⢸⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⢹⣴⣻⣧⣤⣼⣤⣀⢀⠀⠁⠀⣰⣾⣋⣽⣿⢿⣤⢕⡘⡆⠀⠀
+⠀⠀⠀⠀⠀⠀⣾⣿⢟⡭⠓⠒⠩⣟⣿⡇⠀⢰⣿⢟⠍⠂⠀⠈⠙⣷⣸⠃⠀⠀
+⠀⠀⠀⠀⠀⠀⡿⡟⠁⢰⣿⣯⡦⠈⣿⣿⠀⣾⣇⠃⢀⣾⣥⣬⡄⠘⣿⡀⠀⠀
+⠀⠀⠀⠀⠀⢨⡇⡷⣤⡈⠻⠿⠃⢀⣿⣿⠀⣿⣏⣇⠈⠻⠛⠗⢁⣼⠋⢷⠀⠀
+⠀⠀⠀⠀⠀⢹⠁⠸⢾⣷⣦⣤⣴⡾⠁⢡⠀⠠⠉⠫⣳⠦⡤⣾⡿⠋⠀⢸⠀⠀
+⠀⠀⠀⠀⠀⢸⣀⠀⠀⠈⠉⠉⠀⠀⢀⠏⠀⠀⠡⡀⠀⠉⠉⠉⠁⠀⠀⢸⠄⠀
+⠀⠀⠀⠀⠀⠈⢻⡷⣖⣶⣤⣤⣶⡀⠘⡈⠀⠀⠄⠑⣶⣤⣀⣀⣤⣶⣾⠟⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⢳⣶⣴⣿⡿⠋⣤⠀⠀⡀⠀⠀⢀⠘⢯⣽⣿⣿⣾⠃⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⢸⡆⣹⣿⢤⡀⣿⣿⣿⣭⣽⡿⠟⢀⣠⠬⢛⢹⡇⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠈⡏⢸⢸⠳⣝⢶⣬⣉⣉⣠⣤⡶⢛⠕⠀⡄⡎⡇⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⣿⢸⠘⡌⠛⢯⠒⠋⠭⣭⠵⠖⠉⠀⡰⡃⡠⡇⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⢸⢿⢠⡇⡀⢤⠀⠉⠉⠿⠟⠁⠀⢀⡴⡇⠀⠀⢇⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⣼⡞⠸⡇⠀⠐⠈⠒⠤⠤⣤⣤⣖⠷⠁⠀⠀⣠⠋⠇⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⢰⣿⣷⠀⣇⠇⠠⠤⡀⠅⠘⠛⢻⠁⠀⠀⠀⠀⣿⡁⢰⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⣸⣿⣿⡀⡗⡬⢀⠀⠀⠀⠀⠀⠸⠀⠀⠀⠸⠀⣿⠀⠈⡆⠀⠀
+⠀⠀⠀⠀⠀⠀⣿⣿⣿⡇⡗⣌⢘⠀⠀⠀⠀⠀⠐⠀⠀⠀⠈⠀⣻⣧⠀⢱⡄⠀
+⠀⠀⠀⠀⠀⢸⣿⣿⡟⣧⣣⡇⠈⠄⠀⠀⠀⠀⠘⠀⠀⠀⠀⠀⡿⣿⣷⣼⠁⠀
+⠀⠀⠀⠀⠀⢸⣿⣿⡇⣿⡇⡇⠀⡇⠀⠀⠂⠀⢠⠀⠀⠀⠀⠀⡇⡹⠁⢸⡇⠀
+⠀⠀⠀⠀⠀⢸⡟⢻⡇⣸⢧⡇⠀⡇⠀⠀⠀⠀⢘⠀⠀⠀⠀⠀⡇⡇⠀⢸⠁⠀
+⠀⠀⠀⠀⠀⠀⣯⡎⣿⣿⡏⠀⠀⡇⠀⠐⠀⠀⢸⠀⠀⠀⠀⠐⠀⠇⠠⡇⠀⠀
+⠀⠀⠀⠀⠀⠀⣹⡆⢺⣿⣇⢀⠀⡇⠀⠈⠀⠀⠸⠘⠄⠀⠀⠀⢸⠀⣸⠁⠀⠀
+⠀⠀⠀⠀⠀⠀⢿⢰⣜⣿⣿⡗⣠⡇⠀⠀⠀⠀⢸⢢⠀⠀⠀⢸⢀⣠⢳⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠘⢧⡻⣿⠀⢹⠲⡇⠄⠠⠀⠀⢼⠸⠀⠀⠀⡽⣸⡗⣼⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠈⢳⠾⠘⣿⡅⣿⠐⠀⢀⠀⣸⡃⠀⢀⣼⣷⣋⠜⠃⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⢨⠃⢐⣿⠙⣿⡟⠒⠚⠚⠛⡷⠖⣿⡿⠛⠁⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⣼⠀⡘⡏⠀⣿⠁⠀⠀⠀⠀⡏⠃⢹⡇⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⡇⢀⡟⣗⡃⢾⡇⠀⠀⠀⠀⡇⠀⠸⣷⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⢰⠃⠸⣧⠿⠧⢸⡇⠀⠀⠀⢰⡇⠠⠤⣻⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⣼⠀⣼⢈⣗⠀⢘⣿⠀⠀⠀⢸⣷⢀⣲⡏⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⢠⡏⠀⢹⢸⣿⣿⠞⢹⠀⠀⠀⢸⡛⠿⠟⡧⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⣼⠀⠀⡌⢸⣏⡆⠀⢸⠀⠀⠀⢸⣹⠀⠀⡇⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⢰⠏⠀⠀⡅⠀⣿⣮⠀⢸⠀⠀⠀⢸⣯⠀⢠⡇⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⡾⠁⠀⠀⡇⠀⣿⣯⠀⢸⠀⠀⠀⢸⣯⠃⠀⠁⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⢸⠇⢠⠁⠀⡇⠀⣿⡧⠀⢸⠀⠀⠀⢸⢻⡇⠈⡇⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⡺⠀⠒⠀⢠⠃⣰⣿⣧⠀⢺⠀⠀⠀⡼⠽⠘⡰⢳⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⢠⠇⠀⡄⠀⢸⣤⣿⠃⠀⠃⠘⡇⡀⢰⡇⠀⠀⠱⠘⢧⡀⠀⠀⠀⠀⠀
+⠀⠀⠂⡼⠀⢠⣀⠀⢸⡟⠁⠀⠀⠀⡀⣯⠄⢸⣷⠀⠀⠀⠀⠪⡳⣄⠀⠀⠀⠀
+⠀⠀⢸⠇⠀⠈⠍⠀⡈⠀⠀⠀⠀⠀⢹⡿⠒⢿⣿⠆⠀⠀⠀⢢⠀⠈⢳⡀⠀⠀
+⠀⠀⡾⠀⠆⠃⡆⠀⠃⡠⠀⣀⠀⠀⣼⣏⠀⠌⣿⣧⠀⠀⢠⣠⣧⣀⡄⠙⢧⡀
+⠀⢸⠃⠀⠨⠸⠁⠀⣀⠗⣼⣗⠶⢤⣿⡇⠀⠀⢸⣿⣄⠤⠿⣷⡬⠿⣆⠐⢢⣽
+⠀⣾⡆⠀⠈⢰⠀⢀⡇⢠⣿⠃⠀⢰⣿⠁⠀⠀⠀⢻⣧⠀⠀⠘⣷⣀⣨⣷⣬⡯
+⢀⣇⠀⠀⢣⠊⠀⠀⣿⣿⣇⠠⠄⣾⠂⠀⠀⠀⠀⠀⠻⣷⣲⣞⡿⠞⠛⠉⠁⠀
+⣾⡇⠄⠠⠸⡀⠀⢸⣿⠹⢻⣿⣟⠉⠀⠀⠀⠀⠀⠀⠀⠈⠉⠁⠀⠀⠀⠀⠀⠀
+]]
+
+if _G.Simca_Loaded then
+    return
+end
+
+pcall(function()
+    _G.Simca_Loaded = true
+end)
+
+if not game:IsLoaded() then
+    game.Loaded:Wait()
+end
+
+task.wait(1)
+
+-- // Config
+getgenv().Config                = getgenv().Config or {}
+local Config                    = getgenv().Config
+
+-- // Services
+local Players                   = game:GetService("Players")
+local RunService                = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+
+-- // Cached Functions
+local WaitForChild              = game.WaitForChild
+local FindFirstChild            = game.FindFirstChild
+local GetChildren               = game.GetChildren
+local GetPropertyChangedSignal  = game.GetPropertyChangedSignal
+local RenderStepped             = RunService.RenderStepped
+local Heartbeat                 = RunService.Heartbeat
+local GetPlayers                = Players.GetPlayers
+local WorldToViewportPoint      = workspace.CurrentCamera.WorldToViewportPoint
+local GetMouseLocation          = UserInputService.GetMouseLocation
+
+local wrap                      = coroutine.wrap
+
+-- // Variables
+local Client                    = Players.LocalPlayer
+local Camera                    = workspace.CurrentCamera
+
+local OthersBrainrot = {}
+-- // Cached Connections
+
+local Connections = {}
+
+-- // Folder
+local Folders                   = {}
+Folders.Bases                   = WaitForChild(workspace, "Bases")
+
+-- // Functions
+local Functions = {}
+Functions.GetClientBase = function()
+    for _, Base in pairs(GetChildren(Folders.Bases)) do
+        if Base.Configuration.Player.Value == Client then
+            return Base
+        end
+    end
+
+    return nil
+end
+
+Functions.GetRelativeTransform = function(Origin, Target)
+    local ActualOrigin = Origin * CFrame.new(0, -1, 0, 1, 0, 0, 0, 0, 1, 0, -1, 0)
+    return ActualOrigin:ToObjectSpace(Target):Inverse()
+end
+
+Functions.LockBase = function()
+    local ClientCharacter = Client.Character
+    if not ClientCharacter then return end
+
+    local ClientHumanoidRootPart = FindFirstChild(ClientCharacter, "HumanoidRootPart")
+    if not ClientHumanoidRootPart then return end
+
+    local ClientBase = Functions.GetClientBase()
+    if not ClientBase then return end
+
+    if ClientBase.Lock.LockAttachment.LockGui.Time.Text == "0" then
+        firetouchinterest(ClientBase.Lock, ClientHumanoidRootPart, 0)
+        firetouchinterest(ClientBase.Lock, ClientHumanoidRootPart, 1)
+    end
+end
+
+Functions.GetClosestPlayerToMouse = function()
+    local ClosestPlayer
+    local ShortestDistance = math.huge
+
+    local MousePos = GetMouseLocation(UserInputService)
+
+    for _, Player in ipairs(GetPlayers(Players)) do
+        local PlayerCharacter = Player.Character
+        if not PlayerCharacter then continue end
+
+        local PlayerHumanoidRootPart = FindFirstChild(PlayerCharacter, "HumanoidRootPart")
+        if not PlayerHumanoidRootPart then continue end
+
+        local ScreenPos, OnScreen = WorldToViewportPoint(Camera, PlayerHumanoidRootPart.Position)
+        if not OnScreen then continue end
+
+        local Distance = (Vector2.new(ScreenPos.X, ScreenPos.Y) - Vector2.new(MousePos.X, MousePos.Y)).Magnitude
+        if Distance < ShortestDistance then
+            ShortestDistance = Distance
+            ClosestPlayer = Player
+        end
+    end
+
+    return ClosestPlayer
+end
+
+Functions.GetOthersBrainrot = function()
+    local Brainrots = {}
+    for _, Base in pairs(GetChildren(Folders.Bases)) do
+        if Base.Configuration.Player.Value == Client then continue end
+        for _2, Slot in pairs(GetChildren(Base.Slots)) do
+            for _3, Brainrot in pairs(GetChildren(Slot)) do
+                if Brainrot.Name == "Collect" or Brainrot.Name == "Spawn" or Brainrot.Name == "Configuration" then continue end
+                Brainrots[Brainrot.Name] = Brainrot
+            end
+        end
+    end
+
+    return Brainrots
+end
+
+OthersBrainrot = Functions.GetOthersBrainrot()
+
+Functions.StealBrainrot = function(Target)
+    if not FindFirstChild(Target, "HumanoidRootPart") then return end
+    local OldCFrame = Client.Character.HumanoidRootPart.CFrame
+    Client.Character.HumanoidRootPart.CFrame = Target.HumanoidRootPart.CFrame
+    task.wait(.5)
+    fireproximityprompt(Target.HumanoidRootPart.ProximityPrompt)
+    task.wait(.5)
+    Client.Character.HumanoidRootPart.CFrame = CFrame.new(Functions.GetClientBase().CollectZone.Position)
+    task.wait(1)
+    Client.Character.HumanoidRootPart.CFrame = OldCFrame
+end
+
+-- // Connection
+
+local ClientBase = Functions.GetClientBase()
+GetPropertyChangedSignal(ClientBase.Lock.LockAttachment.LockGui.Time, "Text"):Connect(function()
+    if Config.AutoLockBase then
+        if ClientBase.Lock.LockAttachment.LockGui.Time.Text == "0" then
+            Functions.LockBase()
+        end
+    end
+end)
+
+
+-- // Loops
+
+-- // User Interface
+
+local Library                   = loadstring(game:HttpGet("https://raw.githubusercontent.com/notmydaisy/rblx-scripts/main/libraries/obsidian"))()
+
+local Options = Library.Options
+local Toggles = Library.Toggles
+
+local Window                    = Library:CreateWindow({
+	Title = [[<font color="#FFB9C8">simca</font> <font color="#00FF00">live</font>]],
+	Footer = [[<font color="#00FF00">join discord.gg/W9cJTb8N</font>]],
+	Icon = 72000653925540,
+	NotifySide = "Right",
+	ShowCustomCursor = false,
+})
+
+local Tabs                      = {}
+Tabs.Main                       = Window:AddTab("main", "house")
+
+local Groupboxes                = {}
+Groupboxes.Assistance           = Tabs.Main:AddLeftGroupbox("assistance", "bot")
+Groupboxes.Target               = Tabs.Main:AddRightGroupbox("target", "target")
+
+Groupboxes.Assistance:AddToggle("AutoLockBaseToggle", {
+	Text = "auto lock base",
+	Default = Config.AutoLockBase or false,
+
+	Callback = function(Value)
+		Config.AutoLockBase = Value
+        if Config.AutoLockBase then
+            Functions.LockBase()
+        end
+	end,
+})
+
+local BrainrotList = {}
+for Name, Brainrot in pairs(OthersBrainrot) do
+    table.insert(BrainrotList, Name)
+end
+
+Groupboxes.Target:AddDropdown("BrainrotsDropdown", {
+	Values = BrainrotList,
+	Default = "---",
+	Multi = false,
+
+	Text = "brainrots",
+	Callback = function(Value)
+		Config.SelectedBrainrot = OthersBrainrot[Value]
+	end
+})
+
+Groupboxes.Target:AddButton({
+	Text = "refresh brainrots",
+	Func = function()
+        OthersBrainrot = Functions.GetOthersBrainrot()
+		local List = {}
+        for Name, Brainrot in pairs(OthersBrainrot) do
+            print(Name)
+            table.insert(List, Name)
+        end
+        Options.BrainrotsDropdown:SetValues(List)
+	end
+})
+
+Groupboxes.Target:AddButton({
+	Text = "steal",
+	Func = function()
+		if Config.SelectedBrainrot then
+            Functions.StealBrainrot(Config.SelectedBrainrot)
+        end
+	end
+})
