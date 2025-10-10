@@ -1,0 +1,108 @@
+getgenv().FlySettings = {
+    Enabled = false,
+    Speed = 200,
+    MoveUp = false,
+    MoveDown = false,
+}
+
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+
+local LocalPlayer = Players.LocalPlayer
+
+local FlyConnection = nil
+
+local function GetCharacterParts()
+    local Character = LocalPlayer.Character
+    if not Character then return end
+
+    local Humanoid = Character:FindFirstChild("Humanoid")
+    local RootPart = Character:FindFirstChild("HumanoidRootPart")
+
+    if not Humanoid or not RootPart then return end
+    return Humanoid, RootPart
+end
+
+local function UpdateFlyMovement()
+    local _, RootPart = GetCharacterParts()
+    if not RootPart then return end
+
+    local Camera = workspace.CurrentCamera
+    local Direction = Vector3.zero
+
+    if UserInputService:IsKeyDown(Enum.KeyCode.W) then
+        Direction += Camera.CFrame.LookVector
+    end
+    if UserInputService:IsKeyDown(Enum.KeyCode.S) then
+        Direction -= Camera.CFrame.LookVector
+    end
+    if UserInputService:IsKeyDown(Enum.KeyCode.A) then
+        Direction -= Camera.CFrame.RightVector
+    end
+    if UserInputService:IsKeyDown(Enum.KeyCode.D) then
+        Direction += Camera.CFrame.RightVector
+    end
+    if getgenv().FlySettings.MoveUp then
+        Direction += Vector3.new(0, 1, 0)
+    end
+    if getgenv().FlySettings.MoveDown then
+        Direction -= Vector3.new(0, 1, 0)
+    end
+
+    if Direction.Magnitude > 0 then
+        Direction = Direction.Unit * getgenv().FlySettings.Speed
+    end
+
+    RootPart.AssemblyLinearVelocity = Direction
+end
+
+local function StartFlying()
+    local _, RootPart = GetCharacterParts()
+    if not RootPart then return end
+    FlyConnection = RunService.RenderStepped:Connect(UpdateFlyMovement)
+end
+
+local function StopFlying()
+    local _, RootPart = GetCharacterParts()
+    if not RootPart then return end
+
+    RootPart.AssemblyLinearVelocity = Vector3.zero
+
+    if FlyConnection then
+        FlyConnection:Disconnect()
+        FlyConnection = nil
+    end
+end
+
+local function ToggleFly()
+    getgenv().FlySettings.Enabled = not getgenv().FlySettings.Enabled
+    if getgenv().FlySettings.Enabled then
+        StartFlying()
+    else
+        StopFlying()
+    end
+end
+
+local function HandleInputBegan(Input, GameProcessed)
+    if GameProcessed then return end
+
+    if getgenv().FlySettings.Enabled then
+        if Input.KeyCode == Enum.KeyCode.Space then
+            getgenv().FlySettings.MoveUp = true
+        elseif Input.KeyCode == Enum.KeyCode.LeftControl then
+            getgenv().FlySettings.MoveDown = true
+        end
+    end
+end
+
+local function HandleInputEnded(Input)
+    if Input.KeyCode == Enum.KeyCode.Space then
+        getgenv().FlySettings.MoveUp = false
+    elseif Input.KeyCode == Enum.KeyCode.LeftControl then
+        getgenv().FlySettings.MoveDown = false
+    end
+end
+
+UserInputService.InputBegan:Connect(HandleInputBegan)
+UserInputService.InputEnded:Connect(HandleInputEnded)
