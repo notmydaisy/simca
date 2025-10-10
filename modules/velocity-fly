@@ -13,6 +13,8 @@ local LocalPlayer = Players.LocalPlayer
 
 local FlyConnection = nil
 
+local FlyModule = {}
+
 local function GetCharacterParts()
     local Character = LocalPlayer.Character
     if not Character then return end
@@ -57,13 +59,13 @@ local function UpdateFlyMovement()
     RootPart.AssemblyLinearVelocity = Direction
 end
 
-local function StartFlying()
+function FlyModule.StartFlying()
     local _, RootPart = GetCharacterParts()
     if not RootPart then return end
     FlyConnection = RunService.RenderStepped:Connect(UpdateFlyMovement)
 end
 
-local function StopFlying()
+function FlyModule.StopFlying()
     local _, RootPart = GetCharacterParts()
     if not RootPart then return end
 
@@ -75,7 +77,7 @@ local function StopFlying()
     end
 end
 
-local function ToggleFly()
+function FlyModule.ToggleFly()
     getgenv().FlySettings.Enabled = not getgenv().FlySettings.Enabled
     if getgenv().FlySettings.Enabled then
         StartFlying()
