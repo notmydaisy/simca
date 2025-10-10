@@ -1,0 +1,80 @@
+getgenv().VelocitySpeed = {Enabled = false, Speed = 150}
+
+local UserInputService = game:GetService("UserInputService")
+local RunService = game:GetService("RunService")
+local LocalPlayer = game:GetService("Players").LocalPlayer
+local Camera = workspace.CurrentCamera
+local MainConnection
+
+local VelocityAPI = {}
+
+local function UpdateVelocity()
+    if not getgenv().VelocitySpeed.Enabled then return end
+    
+    local Character = LocalPlayer.Character
+    if not Character then return end
+    
+    local HumanoidRootPart = Character:FindFirstChild("HumanoidRootPart")
+    local Humanoid = Character:FindFirstChildOfClass("Humanoid")
+    if not HumanoidRootPart or not Humanoid then return end
+    
+    local CurrentY = HumanoidRootPart.Velocity.Y
+    local Direction = Vector3.new(0, 0, 0)
+    
+    if UserInputService:IsKeyDown(Enum.KeyCode.W) then Direction = Direction + Camera.CFrame.LookVector end
+    if UserInputService:IsKeyDown(Enum.KeyCode.S) then Direction = Direction - Camera.CFrame.LookVector end
+    if UserInputService:IsKeyDown(Enum.KeyCode.A) then Direction = Direction - Camera.CFrame.RightVector end
+    if UserInputService:IsKeyDown(Enum.KeyCode.D) then Direction = Direction + Camera.CFrame.RightVector end
+    
+    Direction = Vector3.new(Direction.X, 0, Direction.Z)
+    
+    if Direction.Magnitude > 0 then
+        HumanoidRootPart.Velocity = Vector3.new(
+            Direction.Unit.X * getgenv().VelocitySpeed.Speed,
+            CurrentY,
+            Direction.Unit.Z * getgenv().VelocitySpeed.Speed
+        )
+    else
+        HumanoidRootPart.Velocity = Vector3.new(0, CurrentY, 0)
+    end
+    
+    if UserInputService:IsKeyDown(Enum.KeyCode.Space) and Humanoid:GetState() == Enum.HumanoidStateType.Landed then
+        Humanoid.Jump = true
+    end
+end
+
+function VelocityAPI.Enable()
+    VelocityAPI.Disable()
+    MainConnection = RunService.RenderStepped:Connect(UpdateVelocity)
+    getgenv().VelocitySpeed.Enabled = true
+    
+    LocalPlayer.CharacterAdded:Connect(function()
+        if getgenv().VelocitySpeed.Enabled and (not MainConnection or not MainConnection.Connected) then
+            task.wait(0.5)
+            MainConnection = RunService.RenderStepped:Connect(UpdateVelocity)
+        end
+    end)
+    
+    return true
+end
+
+function VelocityAPI.Disable()
+    if MainConnection then
+        MainConnection:Disconnect()
+        MainConnection = nil
+    end
+    
+    getgenv().VelocitySpeed.Enabled = false
+    return true
+end
+
+function VelocityAPI.Toggle()
+    return getgenv().VelocitySpeed.Enabled and VelocityAPI.Disable() or VelocityAPI.Enable()
+end
+
+function VelocityAPI.SetSpeed(Speed)
+    getgenv().VelocitySpeed.Speed = tonumber(Speed) or getgenv().VelocitySpeed.Speed
+    return true
+end
+
+return VelocityAPI
