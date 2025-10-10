@@ -108,3 +108,5 @@ end
 
 UserInputService.InputBegan:Connect(HandleInputBegan)
 UserInputService.InputEnded:Connect(HandleInputEnded)
+
+return FlyModule
