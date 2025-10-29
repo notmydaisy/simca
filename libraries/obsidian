@@ -83,7 +83,7 @@ local Library = {
         AccentColor = Color3.fromRGB(255, 185, 200),
         OutlineColor = Color3.fromRGB(45, 45, 45),
         FontColor = Color3.fromRGB(235, 235, 235),
-        Font = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Bold),
+        Font = Font.new("rbxasset://fonts/families/Arimo.json", Enum.FontWeight.Regular),
 
         Red = Color3.fromRGB(255, 50, 50),
         Dark = Color3.new(0, 0, 0),
