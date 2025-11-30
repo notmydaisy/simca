@@ -1,7 +1,0 @@
-local game_state = {
-    banna_town = false;
-    gone_hunting = true;
-    grand_blue_fishing = true;
-}
-
-return game_state

@@ -1,0 +1,4 @@
+return {
+    ["the-forge"] = true,
+    ["gone-hunting"] = true
+}
