@@ -641,13 +641,16 @@ function Compkiller:SetAllText(flags : {[string] : string})
 	end;
 end;
 
-function Compkiller:_GetIcon(name: string, font_aws: boolean?): string
-	if font_aws == true then
+function Compkiller:_GetIcon(name: string, font_aws): string
+	if font_aws then
 		return Compkiller.FontAwesome[name] or name
 	end
 
-	local asset = Compkiller.Lucide.GetAsset(name)
-	if asset and asset.Url then
+	local success, asset = pcall(function()
+		return Compkiller.Lucide.GetAsset(name)
+	end)
+
+	if success and asset and asset.Url then
 		return asset.Url
 	end
 
