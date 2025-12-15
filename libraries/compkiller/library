@@ -406,7 +406,11 @@ Compkiller.IaDrag = false;
 Compkiller.LastDrag = tick();
 Compkiller.Flags = {};
 
-Compkiller.Lucide = loadstring(game:HttpGet("https://github.com/latte-soft/lucide-roblox/releases/download/0.1.3/lucide-roblox.luau"))()
+local FetchIcons, Icons = pcall(function()
+    return (loadstring(
+        game:HttpGet("https://raw.githubusercontent.com/deividcomsono/lucide-roblox-direct/refs/heads/main/source.lua")
+    ) :: () -> IconModule)()
+end)
 
 Compkiller.FontAwesome = {
 	a = "rbxassetid://74244459944328",
@@ -646,15 +650,15 @@ function Compkiller:_GetIcon(name: string, font_aws): string
 		return Compkiller.FontAwesome[name] or name
 	end
 
-	local success, asset = pcall(function()
-		return Compkiller.Lucide.GetAsset(name)
-	end)
+	if not FetchIcons then
+        return
+    end
 
-	if success and asset and asset.Url then
-		return asset.Url
-	end
-
-	return name
+    local Success, Icon = pcall(Icons.GetAsset, IconName)
+    if not Success then
+        return
+    end
+    return Icon
 end
 
 function Compkiller:_RandomString() : string
