@@ -6152,15 +6152,15 @@ function Compkiller:SetTheme(name)
 		};
 	elseif name == "Default" then
 		Compkiller.Colors = {
-            Highlight        = Color3.fromRGB(164, 220, 255),
-            Toggle           = Color3.fromRGB(146, 208, 214),
-            Risky            = Color3.fromRGB(255, 236, 168),
+            Highlight        = Color3.fromRGB(255, 182, 193),
+            Toggle           = Color3.fromRGB(255, 165, 180),
+            Risky            = Color3.fromRGB(255, 214, 224),
             BGDBColor        = Color3.fromRGB(18, 19, 24),
             BlockColor       = Color3.fromRGB(24, 25, 30),
             BlockBackground  = Color3.fromRGB(30, 31, 38),
             DropColor        = Color3.fromRGB(26, 27, 32),
             StrokeColor      = Color3.fromRGB(42, 44, 52),
-            HighStrokeColor  = Color3.fromRGB(70, 120, 140),
+            HighStrokeColor  = Color3.fromRGB(140, 90, 110),
             LineColor        = Color3.fromRGB(90, 92, 100),
             MouseEnter       = Color3.fromRGB(50, 52, 60),
             SwitchColor      = Color3.fromRGB(235, 238, 242),
