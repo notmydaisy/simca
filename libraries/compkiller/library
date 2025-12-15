@@ -656,7 +656,7 @@ function Compkiller:_GetIcon(name : string , font_aws) : string
 		return Compkiller.FontAwesome[name] or name;
 	end;
 
-	return Compkiller.Lucide.GetAsset(name) or Compkiller.FontAwesome[name] or name;
+	return Compkiller.Lucide.GetAsset(name).Url or Compkiller.FontAwesome[name] or name;
 end;
 
 function Compkiller:_RandomString() : string
