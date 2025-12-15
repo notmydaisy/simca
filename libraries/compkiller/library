@@ -652,8 +652,6 @@ function Compkiller:_GetIcon(name : string , font_aws) : string
 		end;
 
 		return AssetId
-
-		return "";
 	end;
 
 	if font_aws then
