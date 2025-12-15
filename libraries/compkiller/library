@@ -651,11 +651,7 @@ function Compkiller:_GetIcon(name : string , font_aws) : string
 			AssetId = Compkiller.Lucide.GetAsset(name) or name
 		end;
 
-		if AssetId and AssetId ~= nil then
-			local asset = Compkiller:CacheImage(AssetId);
-
-			return asset;	
-		end;	
+		return AssetId
 
 		return "";
 	end;
