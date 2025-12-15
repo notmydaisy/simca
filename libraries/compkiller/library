@@ -641,21 +641,18 @@ function Compkiller:SetAllText(flags : {[string] : string})
 	end;
 end;
 
-function Compkiller:_GetIcon(name : string , font_aws) : string
-    local AssetId;
+function Compkiller:_GetIcon(name: string, font_aws: boolean?): string
+	if font_aws == true then
+		return Compkiller.FontAwesome[name] or name
+	end
 
-    if font_aws then
-        AssetId = Compkiller.FontAwesome[name] or name;
-    else
-        AssetId = Compkiller.Lucide.GetAsset(name).Url or name
-    end;
+	local asset = Compkiller.Lucide.GetAsset(name)
+	if asset and asset.Url then
+		return asset.Url
+	end
 
-	if font_aws then
-		return Compkiller.FontAwesome[name] or name;
-	end;
-
-	return AssetId or name;
-end;
+	return name
+end
 
 function Compkiller:_RandomString() : string
 	return "CK="..string.char(math.random(64,102),math.random(64,102),math.random(64,102),math.random(64,102),math.random(64,102),math.random(64,102),math.random(64,102),math.random(64,102),math.random(64,102),math.random(64,102),math.random(64,102),math.random(64,102),math.random(64,102),math.random(64,102),math.random(64,102),math.random(64,102),math.random(64,102),math.random(64,102),math.random(64,102),math.random(64,102));	
