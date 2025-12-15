@@ -650,13 +650,11 @@ function Compkiller:_GetIcon(name : string , font_aws) : string
         AssetId = Compkiller.Lucide.GetAsset(name).Url or name
     end;
 
-    return AssetId
-
 	if font_aws then
 		return Compkiller.FontAwesome[name] or name;
 	end;
 
-	return Compkiller.Lucide.GetAsset(name).Url or Compkiller.FontAwesome[name] or name;
+	return AssetId or name;
 end;
 
 function Compkiller:_RandomString() : string
