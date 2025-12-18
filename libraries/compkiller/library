@@ -9849,11 +9849,7 @@ function Compkiller.new(Config : Window)
 						});
 					end;
 				else
-					if not WindowArgs.IsOpen then
-						ToggleCloseUI(true);
-					else
-						ToggleCloseUI(false);
-					end
+					ToggleCloseUI(true);
 				end;
 			end
 		end));
